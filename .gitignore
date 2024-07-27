@@ -17,3 +17,9 @@
 
 node_modules/
 package-lock.json
+dist/
+style-guide.md
+tailwind.config.js
+package.json
+postcss.config.js
+design/
