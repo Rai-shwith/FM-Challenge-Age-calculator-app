@@ -16,8 +16,11 @@ function handleInput() {
     let month = inputMonth.value;
     let year = inputYear.value;
     let userGivenDate = new Date(year, month - 1, day)
+    let isValidDate = userGivenDate.getDate() == day &&
+        userGivenDate.getMonth() == month - 1 && 
+        userGivenDate.getFullYear() == year;     //Checks is the date is valid Ex: April 31 is invalid
 
-    let emptyDayFieldError = document.querySelector('.inputfiledDay .emptyError')
+        let emptyDayFieldError = document.querySelector('.inputfiledDay .emptyError')
     let validDayFieldError = document.querySelector('.inputfiledDay .validityError')
     let emptyMonthFieldError = document.querySelector('.inputfiledMonth .emptyError')
     let validMonthFieldError = document.querySelector('.inputfiledMonth .validityError')
@@ -36,7 +39,7 @@ function handleInput() {
     if (day == '') {
         emptyDayFieldError.classList.remove('hidden');
         isAllRight = false
-    } else if (day > 31 || day < 1) {
+    } else if (day > 31 || day < 1 || !isValidDate) {
         validDayFieldError.classList.remove('hidden');
         isAllRight = false
     }
@@ -89,41 +92,39 @@ function display(age) {
     let outputDay = document.querySelector('.outputDay');
     let outputMonth = document.querySelector('.outputMonth');
     let outputYear = document.querySelector('.outputYear');
-  
+
     outputDay.innerHTML = '- -';
     outputMonth.innerHTML = '- -';
     outputYear.innerHTML = '- -';
     startAnimation(outputYear, age.yearGap);
     startAnimation(outputMonth, age.monthGap);
     startAnimation(outputDay, age.dayGap);
-  }
-  
-  function startAnimation(numberBox, endValue) {
-    console.log(numberBox);
-  
+}
+
+function startAnimation(numberBox, endValue) {
     let currentValue = 0;
     let speed = 0.5; // Interval speed in milliseconds
     let intervalId = null;
-  
+
     const increment = (endValue - currentValue) / 50; // Initial increment value
     const maxSpeed = 50; // Minimum interval speed (faster)
-  
+
     function animate() {
-      if (currentValue >= endValue) {
-        clearInterval(intervalId);
-        numberBox.innerHTML = endValue; // Ensure it stops exactly at the end value
-      } else {
-        currentValue += increment;
-        numberBox.innerHTML = Math.floor(currentValue);
-  
-        // Gradually increase speed for a smoother effect
-        if (speed > maxSpeed) {
-          speed -= 1; // Increase speed
-          clearInterval(intervalId);
-          intervalId = setInterval(animate, speed);
+        if (currentValue >= endValue) {
+            clearInterval(intervalId);
+            numberBox.innerHTML = endValue; // Ensure it stops exactly at the end value
+        } else {
+            currentValue += increment;
+            numberBox.innerHTML = Math.floor(currentValue);
+
+            // Gradually increase speed for a smoother effect
+            if (speed > maxSpeed) {
+                speed -= 1; // Increase speed
+                clearInterval(intervalId);
+                intervalId = setInterval(animate, speed);
+            }
         }
-      }
     }
-  
+
     intervalId = setInterval(animate, speed);
-  }
+}
