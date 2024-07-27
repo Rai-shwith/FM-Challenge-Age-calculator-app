@@ -19,6 +19,17 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+
     .attribution {
       font-size: 11px;
       text-align: center;
@@ -27,49 +38,75 @@
     .attribution a {
       color: hsl(228, 45%, 44%);
     }
-    body{ font-family: "Poppins", sans-serif;}
+
+    body {
+      font-family: "Poppins", sans-serif;
+    }
   </style>
 </head>
 
-<body class="bg-Off-white font w-screen">
-  <main class="flex flex-col bg-slate-400 w-11/12">
-    <div class="inputTaker flex justify-between px-4 w-full gap-5" >
-      <div class="inputfiled bg-red-600 flex flex-col">
-        <p>Day</p>
-        <input type="number" min="0" class="flex-1 flex-shrink w-full">
+<!-- <body class="bg-Off-white font w-screen"> -->
+
+<body class="bg-Off-white font min-h-screen w-screen flex flex-col items-center">
+  <main class="flex flex-col mt-[10vh] bg-white w-11/12 md:w-3/5 rounded-lg rounded-br-[25%] py-10 gap-5 md:px-10">
+    <div class="inputTaker flex justify-between px-4 w-full gap-5 md:pr-40">
+      <div class="inputfiledDay flex flex-col">
+        <p class="text-Smokey-grey">DAY</p>
+        <input type="number" min="1" placeholder="DD"
+          class="p-3 border-2 outline-none focus:border-Purple cursor-pointer text-Off-black rounded-md w-[95%] text-2xl mt-2  pl-4 font-bold flex-1 flex-shrink ">
+          <div class="errorMessage relative">
+          <div class="emptyError hidden italic  text-red-500 absolute top-3 left-3">This field is required</div>
+          <div class="validityError hidden italic  text-red-500 absolute top-3 left-3">Must be a valid day</div>
+          </div>
       </div>
-      <div class="inputfiled bg-red-600 flex flex-col">
-        <p>Month</p>
-        <input type="number" min="0" class="flex-1 flex-shrink w-full">
+      <div class="inputfiledMonth flex flex-col">
+        <p class="text-Smokey-grey">MONTH</p>
+        <input type="number" min="1" placeholder="MM"
+          class=" p-3 border-2 outline-none focus:border-Purple cursor-pointer text-Off-black rounded-md w-[95%] text-2xl mt-2  pl-4 font-bold  flex-1 flex-shrink">
+          <div class="errorMessage relative">
+          <div class="emptyError hidden italic  text-red-500 absolute top-3 left-3">This field is required</div>
+          <div class="validityError hidden italic  text-red-500 absolute top-3 left-3">Must be a valid month</div>
+          </div>
       </div>
-      <div class="inputfiled bg-red-600 flex flex-col">
-        <p>Year</p>
-        <input type="number" min="0" class="flex-1 flex-shrink w-full">
+      <div class="inputfiledYear flex flex-col">
+        <p class="text-Smokey-grey">YEAR</p>
+        <input type="number" min="1" placeholder="YYYY"
+          class="p-3 border-2 outline-none focus:border-Purple cursor-pointer text-Off-black rounded-md w-[95%] text-2xl mt-2  pl-4 font-bold flex-1 flex-shrink">
+          <div class="errorMessage relative">
+          <div class="emptyError hidden italic  text-red-500 absolute top-3 left-3">This field is required</div>
+          <div class="validityError hidden italic  text-red-500 absolute top-3 left-3">Must be in past</div>
+          </div>
       </div>
     </div>
-    <div class="seperator w-full">
-      <div class="line"></div>
-      <div class="calculate"><img src="assets/images/icon-arrow.svg" alt="arrow icon"></div>
+    <div class="seperator w-full flex items-center mt-5">
+      <div class="ml-5 line inline-block h-0.5 md:h-[2px] w-full bg-Light-grey"></div>
+      <div class="calculate m-0">
+        <span tabindex="0" class=" bg-Purple inline-block p-5 rounded-full  md:scale-150 md:mr-10 active:bg-black active:md:scale-[175%] active:scale-110   cursor-pointer focus:md:bg-black">
+          <img class="bg-transparent max-w-fit " src="assets/images/icon-arrow.svg" alt="arrow icon">
+        </span>
+      </div>
+      <div class="mr-5 line inline-block h-0.5 w-full bg-Light-grey md:hidden"></div>
     </div>
-    <div class="outputGenerator flex flex-col italic w-full">
+    <div class="outputGenerator flex flex-col italic w-full items-start pl-5 text-[3rem] md:text-[5rem] text-Off-black">
       <div class="flex justify-center gap-1">
-        <h2 class="text-Purple text-[32px] font-[800]">- -</h2>
-        <h2 class="text-[32px] font-[800]">years</h2>
+        <h2 class="outputYear text-Purple font-[800] md:-mt-11">- -</h2>
+        <h2 class="font-[800] md:-mt-11">years</h2>
       </div>
       <div class="flex justify-center gap-1">
-        <h2 class="text-Purple text-[32px] font-[800]">- -</h2>
-        <h2 class="text-[32px] font-[800]">monts</h2>
+        <h2 class="outputMonth text-Purple font-[800] md:-mt-11">- -</h2>
+        <h2 class="font-[800] md:-mt-11">months</h2>
       </div>
       <div class="flex justify-center gap-1">
-        <h2 class="text-Purple text-[32px] font-[800]">- -</h2>
-        <h2 class="text-[32px] font-[800]">days</h2>
+        <h2 class="text-Purple outputDay font-[800] md:-mt-11">- -</h2>
+        <h2 class="font-[800] md:-mt-11">days</h2>
       </div>
     </div>
   </main>
-  <div class="attribution">
+  <div class="attribution mt-20">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="https://github.com/Rai-shwith" target="_blank">Ashwith Rai</a>.
   </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
