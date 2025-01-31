@@ -7,6 +7,12 @@ let inputYear = inputs[2];
 
 let calculateBtn = document.querySelector('.seperator span');
 
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        handleInput()
+    }
+});
+
 calculateBtn.addEventListener('click', () => {
     handleInput()
 })
